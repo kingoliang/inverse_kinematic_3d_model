@@ -57,6 +57,7 @@
             rightArmNode = character.getObjectByName("RightArm");
             rightElbowNode = character.getObjectByName("RightForeArm");
             leftLegNode = character.getObjectByName("LeftUpLeg");
+            console.log("leftLegNode1",leftLegNode)
             leftKneeNode = character.getObjectByName("LeftLeg");
             rightLegNode = character.getObjectByName("RightUpLeg");
             rightKneeNode = character.getObjectByName("RightLeg");
@@ -68,6 +69,7 @@
 
             var spheres = [leftHandSphere, rightHandSphere, leftFootSphere, rightFootSphere];
             initDragControls(spheres);
+            setCharacterRotation({"leftHandRotation": [-0.6281079502938672, 0.14023376351170702, -0.31718114384491924, -0.5145907736512414], "rightHandRotation": [-0.6271335693778481, -0.12341555870997012, 0.291278646113347, 0.4817426685729586], "leftFootRotation": [-0.6997584053646334, 0.0, 0.0832254352768669, 1.5631703150791842], "rightFootRotation": [-0.155113583133063, 0.0, -0.0948276793980477, 0.34107202856873514]});
         });
 
 
@@ -89,6 +91,7 @@
             xhr.send(data);
 
         }
+        //{"leftHandRotation": [-0.6281079502938672, 0.14023376351170702, -0.31718114384491924, -0.5145907736512414], "rightHandRotation": [-0.6271335693778481, -0.12341555870997012, 0.291278646113347, 0.4817426685729586], "leftFootRotation": [-0.6997584053646334, 0.0, 0.0832254352768669, 1.5631703150791842], "rightFootRotation": [-0.155113583133063, 0.0, -0.0948276793980477, 0.34107202856873514]}
 
         function setNodeRotation(node1, node2, rotation, node2_axis){
             node1.rotation.set(0, 0, 0);
@@ -113,15 +116,15 @@
                 }
                 return rotation;
             }
-            var leftHandRotation = data.leftHandRotation;
-            var rightHandRotation = data.rightHandRotation;
+            //var leftHandRotation = data.leftHandRotation;
+            //var rightHandRotation = data.rightHandRotation;
             var leftFootRotation = data.leftFootRotation;
-            var rightFootRotation = data.rightFootRotation;
-
-            setNodeRotation(leftArmNode, leftElbowNode, leftHandRotation, 'y');
-            setNodeRotation(rightArmNode, rightElbowNode, rightHandRotation, 'y');
+            //var rightFootRotation = data.rightFootRotation;
+            console.log("leftFootRotation",leftFootRotation,leftLegNode);
+            //setNodeRotation(leftArmNode, leftElbowNode, leftHandRotation, 'y');
+            //setNodeRotation(rightArmNode, rightElbowNode, rightHandRotation, 'y');
             setNodeRotation(leftLegNode, leftKneeNode, leftFootRotation, 'x');
-            setNodeRotation(rightLegNode, rightKneeNode, rightFootRotation, 'x');
+            //setNodeRotation(rightLegNode, rightKneeNode, rightFootRotation, 'x');
         }
 
         function getTargetData() {
@@ -161,6 +164,7 @@
 
             dragControls.addEventListener('hoveron', function (event) {
                 transformControls.attach(event.object);
+                console.log("event.object",event.object)
             });
 
             dragControls.addEventListener('dragstart', function (event) {
@@ -197,6 +201,7 @@
             renderer.render( scene, camera );
         }
         animate();
+        console.log("leftLegNode2",leftLegNode)
     </script>
 </body>
 </html>
